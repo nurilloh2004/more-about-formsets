@@ -7,14 +7,23 @@ from .models import *
 
 
 def home(request):
-    ExampleFormSet = modelformset_factory(Example, fields=('name', 'ls'), extra=5)
+    inputt = input(int())
+    ExampleFormSet = modelformset_factory(Example, fields=('name', 'ls'), extra=inputt)
     if request.method == 'POST':
-        form = ExampleFormSet(request.POST)
+        return inputt
+
+        if request.method == 'POST':
+            form = ExampleFormSet(request.POST)
         # instances = form.save(commit=False)
         # for instance in instances:
         #     instance.save()
-        instances = form.save()
+            instances = form.save()
 
     form = ExampleFormSet(queryset=Example.objects.none())
 
+    
+
     return render(request, 'home.html', {'form' : form})
+
+
+
